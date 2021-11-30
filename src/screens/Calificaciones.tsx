@@ -25,10 +25,6 @@ const Calificaciones = () => {
         promedioFinal = notaFinal / 2
         ValidacionDeAprobacion()
     }
-    const getNotas = () => {
-        setEstudiantes([...estudiantes])
-    }
-
     const ValidacionDeAprobacion = () => {
         if (primerNota === '' || segundaNota === '') {
             promedioValidado = reprobado
@@ -38,7 +34,6 @@ const Calificaciones = () => {
             setnotaFinales([...notaFinales, promedioFinal.toString()])
         }
     }
-
     return (
         <View style={styles.containerBase}>
             <Text style={styles.textCabeza}>Nombre del estudiante</Text>
@@ -63,7 +58,7 @@ const Calificaciones = () => {
 
                 <View>
                     <Text style={styles.text}>NF</Text>
-                    <Text style={styles.input2}>{notaFinales}</Text>
+                    <Text style={styles.input2}>{promedioValidado}</Text>
 
                 </View>
                 <TouchableOpacity
@@ -79,7 +74,7 @@ const Calificaciones = () => {
                         <View style={styles.container} key={index}>
                             <Text style={styles.text} >{estudiantes}</Text>
 
-                            <Text style={styles.text}>Nota Final:{notaFinales[index]}</Text>
+                            <Text style={styles.text}>Nota Final :{notaFinales[index]}</Text>
 
                         </View>
                     ))
@@ -149,7 +144,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 24,
-        color: '#034C50',
+        color: '#05786A',
     },
     input2: {
         backgroundColor: '#F2F8FB',
@@ -162,10 +157,10 @@ const styles = StyleSheet.create({
 
     },
     textCabeza:{
-        fontSize: 24,
+        fontSize: 30,
         color: '#034C50',
-        marginTop:40
+        marginTop:50,
+        marginLeft: 10
     }
-
 
 })
