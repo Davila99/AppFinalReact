@@ -26,7 +26,7 @@ const Calificaciones = () => {
         ValidacionDeAprobacion()
     }
     const ValidacionDeAprobacion = () => {
-        if (primerNota === '' || segundaNota === '') {
+        if (primerNota === 'SD' || segundaNota === 'SD') {
             promedioValidado = reprobado
             setnotaFinales([...notaFinales, promedioValidado])
         }
