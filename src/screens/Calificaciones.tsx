@@ -14,16 +14,15 @@ const Calificaciones = () => {
     const [segundaNota, setSegundaNota] = useState('')
 
     const [notaFinales, setnotaFinales] = useState<number[]>([])
-
+    let promedioFinal
     const ValidarNota = () => {
         setEstudiantes([...estudiantes, estudiante])
-        let notaFinal = parseFloat(primerNota)+  parseFloat(segundaNota)
-        let promedioFinal= notaFinal/2
+        let notaFinal = parseFloat(primerNota) + parseFloat(segundaNota)
+        promedioFinal = notaFinal / 2
         setnotaFinales([...notaFinales, promedioFinal])
     }
 
-
-    const getNotas  = () =>{
+    const getNotas = () => {
         setEstudiantes([...estudiantes])
     }
     //  useEffect(, [])
@@ -48,12 +47,12 @@ const Calificaciones = () => {
                     placeholder={"IIP"}
                     onChangeText={setSegundaNota}
                 />
-                {/* <GetNota
+                 <GetNota
                     title={"NF"}
                     placeholder={"NF"}
-                    onChangeText={notaFinal}
-                /> */}
-                 
+                    onChangeText={setSegundaNota}
+                />
+               
                 <TouchableOpacity
                     onPress={ValidarNota}
                     style={styles.botonReset}
@@ -66,7 +65,7 @@ const Calificaciones = () => {
                     estudiantes.map((estudiantes, index) => (
                         <View style={styles.container} key={index}>
                             <Text style={styles.text} >{estudiantes}</Text>
-                            <Text style={styles.text}>{notaFinales}</Text>
+                            <Text style={styles.text}>{notaFinales[index]}</Text>
                         </View>
                     ))
 
@@ -103,7 +102,7 @@ const styles = StyleSheet.create({
     containerBase: {
         flex: 1,
         backgroundColor: '#FFFFFF',
-        justifyContent:'center'
+        justifyContent: 'center'
     },
     containerNota: {
         width: '50%',
@@ -130,7 +129,7 @@ const styles = StyleSheet.create({
 
     },
     text: {
-        marginTop:60,
+        marginTop: 60,
         fontSize: 30,
         color: '#034C50',
     },
@@ -142,7 +141,7 @@ const styles = StyleSheet.create({
         fontSize: 22,
         fontWeight: 'bold',
         color: '#004445'
-        
+
     }
 
 

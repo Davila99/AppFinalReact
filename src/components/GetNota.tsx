@@ -3,7 +3,7 @@ import { StyleSheet, Text, View,TextInput } from 'react-native'
 
 interface Props {
     title: string;
-    placeholder: string;
+    placeholder?: string;
     onChangeText: (text: string) => void;
 }
 
