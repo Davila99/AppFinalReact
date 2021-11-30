@@ -41,7 +41,7 @@ const Calificaciones = () => {
 
     return (
         <View style={styles.containerBase}>
-            <Text style={styles.text}>Nombre del estudiante</Text>
+            <Text style={styles.textCabeza}>Nombre del estudiante</Text>
             <View style={styles.container}>
                 <TextInput
                     style={styles.inputs}
@@ -60,17 +60,10 @@ const Calificaciones = () => {
                     placeholder={"IIP"}
                     onChangeText={setSegundaNota}
                 />
-                 {/* <GetNota
-                    title={"IIP"}
-                    placeholder={"IIP"}
-                    defaultValue={promedioFinal}
-                /> */}
+
                 <View>
-                 <Text style={styles.textFinal}>NF</Text>
-               <TextInput
-                style={styles.textFinal}
-                defaultValue={promedioFinal}
-            />
+                    <Text style={styles.text}>NF</Text>
+                    <Text style={styles.input2}>{notaFinales}</Text>
 
                 </View>
                 <TouchableOpacity
@@ -85,7 +78,9 @@ const Calificaciones = () => {
                     estudiantes.map((estudiantes, index) => (
                         <View style={styles.container} key={index}>
                             <Text style={styles.text} >{estudiantes}</Text>
+
                             <Text style={styles.text}>Nota Final:{notaFinales[index]}</Text>
+
                         </View>
                     ))
 
@@ -125,18 +120,22 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     containerNota: {
-        width: '50%',
-        marginBottom: 20,
+        width: '95%',
         flexDirection: 'row',
-        paddingVertical: 15,
-        paddingHorizontal: 8,
         justifyContent: 'space-between',
-        marginLeft: 30,
+        marginBottom: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 8,
+        borderRadius: 10,
+        marginLeft: 10,
+        borderWidth: 3,
+        borderColor: '#8C8A8A',
+        marginTop: 10,
     },
     botonReset: {
         backgroundColor: '#8C8A8A',
         borderRadius: 8,
-        width: '60%',
+        width: '30%',
         paddingVertical: 7,
         marginTop: 5
     },
@@ -149,9 +148,23 @@ const styles = StyleSheet.create({
 
     },
     text: {
-        marginTop: 60,
-        fontSize: 30,
+        fontSize: 24,
         color: '#034C50',
+    },
+    input2: {
+        backgroundColor: '#F2F8FB',
+        borderRadius: 8,
+        padding: 10,
+        textAlign: 'right',
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: '#004445'
+
+    },
+    textCabeza:{
+        fontSize: 24,
+        color: '#034C50',
+        marginTop:40
     }
 
 
