@@ -11,11 +11,12 @@ interface Props {
 const GetNota = ({ title, placeholder, onChangeText }: Props) => {
     return (
         <View>
-            <Text></Text>
-            <TextInput>
-
-
-            </TextInput>
+             <Text style={styles.text}>{title}</Text>
+            <TextInput
+                style={styles.inputs}
+                placeholder={placeholder}
+                onChangeText={text => onChangeText(text)}
+            />
         </View>
     )
 }
@@ -23,5 +24,20 @@ const GetNota = ({ title, placeholder, onChangeText }: Props) => {
 export default GetNota
 
 const styles = StyleSheet.create({
+    inputs: {
+        backgroundColor: '#F2F8FB',
+        borderRadius: 8,
+        padding: 10,
+        textAlign: 'right',
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: '#004445'
 
+    },
+    text: {
+
+        fontSize: 24,
+        color: '#034C50',
+
+    }
 })

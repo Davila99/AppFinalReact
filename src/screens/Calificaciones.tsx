@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, TextInput, Button, ScrollView, TouchableOpacity } from 'react-native'
+import GetNota from '../components/GetNota'
 
 const Calificaciones = () => {
 
@@ -8,8 +9,15 @@ const Calificaciones = () => {
 
     const [estudiantes, setEstudiantes] = useState<string[]>([])
 
-    const crearTarea = () => {
+    const [primerNota, setPrimerNota] = useState('')
+
+    const [segundaNota, setSegundaNota] = useState('')
+
+    const [notaFinal, setnotaFinal] = useState<string[]>([])
+
+    const ValidarNota = () => {
         setEstudiantes([...estudiantes, estudiante])
+
     }
 
     return (
@@ -21,11 +29,26 @@ const Calificaciones = () => {
                 />
                 <Button
                     title="Agregar"
-                    onPress={crearTarea}
+                    onPress={ValidarNota}
                 />
             </View>
-            <View>
-                
+            <View style={styles.containerNota}>
+                <GetNota
+                    title={"IP"}
+                    placeholder={"IP"}
+                    onChangeText={setPrimerNota}
+                />
+                <GetNota
+                    title={"IIP"}
+                    placeholder={"IIP"}
+                    onChangeText={setSegundaNota}
+                />
+                <TouchableOpacity
+                    onPress={ValidarNota}
+                    style={styles.botonReset}
+                >
+                    <Text style={styles.textbotonReset}>Agregar</Text>
+                </TouchableOpacity>
             </View>
             <ScrollView>
 
@@ -69,6 +92,31 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#FFFFFF',
 
+    },
+    containerNota: {
+        width: '50%',
+        marginBottom: 20,
+        flexDirection: 'row',
+        paddingVertical: 15,
+        paddingHorizontal: 8,
+        justifyContent: 'space-between',
+        marginLeft: 30,
+    },
+    botonReset: {
+        backgroundColor: '#8C8A8A',
+        borderRadius: 8,
+        width: '60%',
+        paddingVertical: 7,
+        marginTop: 5
+    },
+    textbotonReset: {
+        color: '#05786A',
+        fontWeight: 'bold',
+        fontSize: 20,
+        textAlign: 'center',
+        marginTop: 10
+
     }
+
 
 })
