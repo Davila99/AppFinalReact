@@ -13,23 +13,28 @@ const Calificaciones = () => {
 
     const [segundaNota, setSegundaNota] = useState('')
 
-    const [notaFinal, setnotaFinal] = useState<string[]>([])
+    const [notaFinales, setnotaFinales] = useState<number[]>([])
 
     const ValidarNota = () => {
         setEstudiantes([...estudiantes, estudiante])
-
+        let notaFinal = parseFloat(primerNota)+  parseFloat(segundaNota)
+        let promedioFinal= notaFinal/2
+        setnotaFinales([...notaFinales, promedioFinal])
     }
 
+
+    const getNotas  = () =>{
+        setEstudiantes([...estudiantes])
+    }
+    //  useEffect(, [])
     return (
         <View style={styles.containerBase}>
+            <Text style={styles.text}>Nombre del estudiante</Text>
             <View style={styles.container}>
                 <TextInput
                     style={styles.inputs}
+                    placeholder={"Nombre del Estudiante"}
                     onChangeText={setEstudiante}
-                />
-                <Button
-                    title="Agregar"
-                    onPress={ValidarNota}
                 />
             </View>
             <View style={styles.containerNota}>
@@ -43,6 +48,12 @@ const Calificaciones = () => {
                     placeholder={"IIP"}
                     onChangeText={setSegundaNota}
                 />
+                {/* <GetNota
+                    title={"NF"}
+                    placeholder={"NF"}
+                    onChangeText={notaFinal}
+                /> */}
+                 
                 <TouchableOpacity
                     onPress={ValidarNota}
                     style={styles.botonReset}
@@ -51,13 +62,14 @@ const Calificaciones = () => {
                 </TouchableOpacity>
             </View>
             <ScrollView>
-
                 {
-                    estudiantes.map((lista, index) => (
+                    estudiantes.map((estudiantes, index) => (
                         <View style={styles.container} key={index}>
-                            <Text style={styles.text} >{lista}</Text>
+                            <Text style={styles.text} >{estudiantes}</Text>
+                            <Text style={styles.text}>{notaFinales}</Text>
                         </View>
                     ))
+
                 }
             </ScrollView>
         </View>
@@ -77,8 +89,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginLeft: 10,
         borderWidth: 3,
-        borderColor: '#3492eb',
-        marginTop: 40,
+        borderColor: '#8C8A8A',
+        marginTop: 10,
     },
     inputs: {
         backgroundColor: '#FFFFFF',
@@ -91,7 +103,7 @@ const styles = StyleSheet.create({
     containerBase: {
         flex: 1,
         backgroundColor: '#FFFFFF',
-
+        justifyContent:'center'
     },
     containerNota: {
         width: '50%',
@@ -116,6 +128,21 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 10
 
+    },
+    text: {
+        marginTop:60,
+        fontSize: 30,
+        color: '#034C50',
+    },
+    inputNotaFinal: {
+        backgroundColor: '#F2F8FB',
+        borderRadius: 8,
+        padding: 10,
+        textAlign: 'right',
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: '#004445'
+        
     }
 
 

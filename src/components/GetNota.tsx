@@ -32,12 +32,13 @@ const styles = StyleSheet.create({
         fontSize: 22,
         fontWeight: 'bold',
         color: '#004445'
-
+        
     },
     text: {
 
         fontSize: 24,
         color: '#034C50',
 
-    }
+    },
+    
 })
