@@ -58,7 +58,7 @@ const Calificaciones = () => {
 
                 <View>
                     <Text style={styles.text}>NF</Text>
-                    <Text style={styles.input2}>{promedioValidado}</Text>
+                    <Text style={styles.input2}>{notaFinales}</Text>
 
                 </View>
                 <TouchableOpacity
