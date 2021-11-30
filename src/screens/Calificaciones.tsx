@@ -13,19 +13,32 @@ const Calificaciones = () => {
 
     const [segundaNota, setSegundaNota] = useState('')
 
-    const [notaFinales, setnotaFinales] = useState<number[]>([])
+    const [notaFinales, setnotaFinales] = useState<string[]>([])
+
     let promedioFinal
+    let promedioValidado=''
+    let reprobado ='SD'
+    
     const ValidarNota = () => {
         setEstudiantes([...estudiantes, estudiante])
         let notaFinal = parseFloat(primerNota) + parseFloat(segundaNota)
         promedioFinal = notaFinal / 2
-        setnotaFinales([...notaFinales, promedioFinal])
+        ValidacionDeAprobacion()
     }
 
     const getNotas = () => {
         setEstudiantes([...estudiantes])
     }
-    //  useEffect(, [])
+    const ValidacionDeAprobacion = ()=>{
+        if (primerNota==='' || segundaNota === '') {
+        promedioValidado = reprobado
+        setnotaFinales([...notaFinales, promedioValidado])
+        }
+        if (promedioFinal>=60) {
+             setnotaFinales([...notaFinales, promedioFinal])
+        }
+    }
+
     return (
         <View style={styles.containerBase}>
             <Text style={styles.text}>Nombre del estudiante</Text>
@@ -65,7 +78,7 @@ const Calificaciones = () => {
                     estudiantes.map((estudiantes, index) => (
                         <View style={styles.container} key={index}>
                             <Text style={styles.text} >{estudiantes}</Text>
-                            <Text style={styles.text}>{notaFinales[index]}</Text>
+                            <Text style={styles.text}>Nota Final:{notaFinales[index]}</Text>
                         </View>
                     ))
 
