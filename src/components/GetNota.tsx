@@ -5,10 +5,11 @@ interface Props {
     title: string;
     placeholder?: string;
     onChangeText: (text: string) => void;
+    defaultValue?: number;
 }
 
 
-const GetNota = ({ title, placeholder, onChangeText }: Props) => {
+const GetNota = ({ title, placeholder, onChangeText,defaultValue }: Props) => {
     return (
         <View>
              <Text style={styles.text}>{title}</Text>
@@ -16,6 +17,7 @@ const GetNota = ({ title, placeholder, onChangeText }: Props) => {
                 style={styles.inputs}
                 placeholder={placeholder}
                 onChangeText={text => onChangeText(text)}
+                defaultValue={defaultValue}
             />
         </View>
     )

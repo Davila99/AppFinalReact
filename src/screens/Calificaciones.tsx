@@ -15,27 +15,27 @@ const Calificaciones = () => {
 
     const [notaFinales, setnotaFinales] = useState<string[]>([])
 
-    let promedioFinal
-    let promedioValidado=''
-    let reprobado ='SD'
-    
+    let promedioFinal: number = 0
+    let promedioValidado = ''
+    let reprobado = 'SD'
+
     const ValidarNota = () => {
         setEstudiantes([...estudiantes, estudiante])
         let notaFinal = parseFloat(primerNota) + parseFloat(segundaNota)
         promedioFinal = notaFinal / 2
         ValidacionDeAprobacion()
     }
-
     const getNotas = () => {
         setEstudiantes([...estudiantes])
     }
-    const ValidacionDeAprobacion = ()=>{
-        if (primerNota==='' || segundaNota === '') {
-        promedioValidado = reprobado
-        setnotaFinales([...notaFinales, promedioValidado])
+
+    const ValidacionDeAprobacion = () => {
+        if (primerNota === '' || segundaNota === '') {
+            promedioValidado = reprobado
+            setnotaFinales([...notaFinales, promedioValidado])
         }
-        if (promedioFinal>=60) {
-             setnotaFinales([...notaFinales, promedioFinal])
+        if (promedioFinal >= 60) {
+            setnotaFinales([...notaFinales, promedioFinal.toString()])
         }
     }
 
@@ -60,12 +60,19 @@ const Calificaciones = () => {
                     placeholder={"IIP"}
                     onChangeText={setSegundaNota}
                 />
-                 <GetNota
-                    title={"NF"}
-                    placeholder={"NF"}
-                    onChangeText={setSegundaNota}
-                />
-               
+                 {/* <GetNota
+                    title={"IIP"}
+                    placeholder={"IIP"}
+                    defaultValue={promedioFinal}
+                /> */}
+                <View>
+                 <Text style={styles.textFinal}>NF</Text>
+               <TextInput
+                style={styles.textFinal}
+                defaultValue={promedioFinal}
+            />
+
+                </View>
                 <TouchableOpacity
                     onPress={ValidarNota}
                     style={styles.botonReset}
@@ -145,16 +152,6 @@ const styles = StyleSheet.create({
         marginTop: 60,
         fontSize: 30,
         color: '#034C50',
-    },
-    inputNotaFinal: {
-        backgroundColor: '#F2F8FB',
-        borderRadius: 8,
-        padding: 10,
-        textAlign: 'right',
-        fontSize: 22,
-        fontWeight: 'bold',
-        color: '#004445'
-
     }
 
 
