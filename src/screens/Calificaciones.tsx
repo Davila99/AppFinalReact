@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity,Separator } from 'react-native'
 import GetNota from '../components/GetNota'
 
 const Calificaciones = () => {
@@ -27,7 +27,6 @@ const Calificaciones = () => {
         ValidacionDeAprobacion()
         setnotaFinal(promedioFinal.toPrecision())
     }
-
 
     const ValidacionDeAprobacion = () => {
         if (primerNota === 'SD' || segundaNota === 'SD' || primerNota === 'NSP' || segundaNota === 'SD') {
@@ -77,6 +76,7 @@ const Calificaciones = () => {
                     estudiantes.map((estudiantes, index) => (
                         <View style={styles.container} key={index}>
                             <Text style={styles.text} >{estudiantes}</Text>
+                            <Separator/>
                             <Text style={[notaFinales[index] < '60' ? styles.textReprobado : styles.textAprobado]}>Nota Final :{notaFinales[index]}</Text>
                         </View>
                     ))
