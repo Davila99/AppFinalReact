@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { StyleSheet, Text, View, TextInput, Button, ScrollView, TouchableOpacity } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity } from 'react-native'
 import GetNota from '../components/GetNota'
 
 const Calificaciones = () => {
@@ -14,6 +14,7 @@ const Calificaciones = () => {
     const [segundaNota, setSegundaNota] = useState('')
 
     const [notaFinales, setnotaFinales] = useState<string[]>([])
+    const [notaFinal, setnotaFinal] = useState<string>('')
 
     let promedioFinal: number = 0
     let promedioValidado = ''
@@ -24,13 +25,16 @@ const Calificaciones = () => {
         let notaFinal = parseFloat(primerNota) + parseFloat(segundaNota)
         promedioFinal = notaFinal / 2
         ValidacionDeAprobacion()
+        setnotaFinal(promedioFinal.toPrecision())
     }
+
+
     const ValidacionDeAprobacion = () => {
-        if (primerNota === 'SD' || segundaNota === 'SD') {
+        if (primerNota === 'SD' || segundaNota === 'SD' || primerNota === 'NSP' || segundaNota === 'SD') {
             promedioValidado = reprobado
             setnotaFinales([...notaFinales, promedioValidado])
         }
-        if (promedioFinal >= 60) {
+        else {
             setnotaFinales([...notaFinales, promedioFinal.toString()])
         }
     }
@@ -58,7 +62,7 @@ const Calificaciones = () => {
 
                 <View>
                     <Text style={styles.text}>NF</Text>
-                    <Text style={styles.input2}>{promedioFinal}</Text>
+                    <Text style={styles.input2}>{notaFinal}</Text>
 
                 </View>
                 <TouchableOpacity
@@ -73,9 +77,7 @@ const Calificaciones = () => {
                     estudiantes.map((estudiantes, index) => (
                         <View style={styles.container} key={index}>
                             <Text style={styles.text} >{estudiantes}</Text>
-
-                            <Text style={styles.text}>Nota Final :{notaFinales[index]}</Text>
-
+                            <Text style={[notaFinales[index] < '60' ? styles.textReprobado : styles.textAprobado]}>Nota Final :{notaFinales[index]}</Text>
                         </View>
                     ))
 
@@ -146,6 +148,14 @@ const styles = StyleSheet.create({
         fontSize: 24,
         color: '#05786A',
     },
+    textReprobado: {
+        fontSize: 24,
+        color: '#B52222',
+    },
+    textAprobado: {
+        fontSize: 24,
+        color: '#05786A',
+    },
     input2: {
         backgroundColor: '#F2F8FB',
         borderRadius: 8,
@@ -156,10 +166,10 @@ const styles = StyleSheet.create({
         color: '#004445'
 
     },
-    textCabeza:{
+    textCabeza: {
         fontSize: 30,
         color: '#034C50',
-        marginTop:50,
+        marginTop: 50,
         marginLeft: 10
     }
 
